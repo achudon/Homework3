@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9D37C9261CB4876F008B94F5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37C9251CB4876F008B94F5 /* main.swift */; };
-		9D37C92D1CB48789008B94F5 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37C92C1CB48789008B94F5 /* Calculator.swift */; };
 		9D37C92F1CB487BB008B94F5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37C92E1CB487BB008B94F5 /* Array.swift */; };
 		9D37C9311CB487CC008B94F5 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37C9301CB487CC008B94F5 /* Points.swift */; };
 /* End PBXBuildFile section */
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		9D37C9221CB4876F008B94F5 /* Homework3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Homework3; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D37C9251CB4876F008B94F5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		9D37C92C1CB48789008B94F5 /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		9D37C92E1CB487BB008B94F5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9D37C9301CB487CC008B94F5 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				9D37C9251CB4876F008B94F5 /* main.swift */,
-				9D37C92C1CB48789008B94F5 /* Calculator.swift */,
 				9D37C92E1CB487BB008B94F5 /* Array.swift */,
 				9D37C9301CB487CC008B94F5 /* Points.swift */,
 			);
@@ -131,7 +128,6 @@
 				9D37C9311CB487CC008B94F5 /* Points.swift in Sources */,
 				9D37C92F1CB487BB008B94F5 /* Array.swift in Sources */,
 				9D37C9261CB4876F008B94F5 /* main.swift in Sources */,
-				9D37C92D1CB48789008B94F5 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +247,7 @@
 				9D37C92B1CB4876F008B94F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

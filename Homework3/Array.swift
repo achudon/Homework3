@@ -45,21 +45,10 @@ func average(numArray: [Int]) -> Int {
     return arraySum / arrayCount
 }
 
+
 // take in an operand and an array of Ints as parameters, returns the result of that operation
 
-func genericCalc(operand: String, numArray: [Int]) -> Int{
-    switch operand {
-        case "+":
-            return add(numArray)
-        case "*":
-            return multiply(numArray)
-        case "count":
-            return count(numArray)
-        case "avg":
-            return average(numArray)
-        default:
-            print("Please enter valid values for an operation")
-    }
-    return 0
+func mathOp(numArray: [Int], op: ([Int]) -> Int) -> Int{
+    return op(numArray)
 }
 
