@@ -135,7 +135,71 @@ func arrayMathOp(numArray: [Int], op: ([Int]) -> Int) -> Int{
 }
 
 func testArrayCalc() {
+    // test add function
     
+    // add 1 + 1, answer: 2
+    print("add 1 + 1, answer: 2")
+    print(arrayAdd([1, 1]))
+    
+    // add 5 + 7, answer: 15
+    print("add 5 + 7 + 3, answer: 15")
+    print(arrayAdd([5, 7, 3]))
+    
+    // add 5 + -1 + 10, answer: 14
+    print("add 5 + -1 + 10, answer: 14")
+    print(arrayAdd([5, -1, 10]))
+    
+    // test multiply function
+    
+    // multiply 2 * 0, answer 0
+    print("multiply 2 * 0, answer 0")
+    print(arrayMultiply([2, 0]))
+    
+    // multiply 10 * (-8) * 2, answer -160
+    print("multiply 10 * (-8) * 2, answer -160")
+    print(arrayMultiply([10, -8, 2]))
+    
+    // multiply (-10), answer nil
+    print("multiply (-10)")
+    print(arrayMultiply([-10]))
+    
+    // test count function
+    
+    // count array with numbers, answer 6
+    print("count numbers in [1, 2, 3, 4, 5, 6]")
+    print(count([1, 2, 3, 4, 5, 6]))
+    
+    // count empty array
+    print("count numbers in []")
+    print(count([]))
+    
+    // test average function
+    
+    // take average of these numbers [1, 2, 3, 4, 5, 6], answer 6
+    print("take average of these numbers [1, 2, 3, 4, 5, 6], answer 6")
+    print(average([1, 2, 3, 4, 5, 6]))
+    
+    // take average of empty array
+    print("take average of these numbers []")
+    print(average([]))
+    
+    // test generic function
+    
+    // add 5 + -1 + 10, answer: 14
+    print("add 5 + -1 + 10, answer: 14")
+    print(arrayMathOp([5, -1, 10], op: arrayAdd()))
+    
+    // multiply 10 * (-8) * 2, answer -160
+    print("multiply 10 * (-8) * 2, answer -160")
+    print(arrayMathOp([10, -8, 2], op: arrayMultiply()))
+    
+    // count array with numbers, answer 6
+    print("count numbers in [1, 2, 3, 4, 5, 6]")
+    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: count()))
+    
+    // take average of these numbers [1, 2, 3, 4, 5, 6], answer 6
+    print("take average of these numbers [1, 2, 3, 4, 5, 6], answer 6")
+    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: average()))
 }
 
 testArrayCalc()
