@@ -47,7 +47,7 @@ func testBasicCalc() {
     print(add(5, num2: 7))
     
     // add 5 + -1, answer: 4
-    print("add 5 + -1, answer: 12")
+    print("add 5 + -1, answer: 4")
     print(add(5, num2: -1))
     
     // test subtract function
@@ -83,6 +83,24 @@ func testBasicCalc() {
     // divide 10 / 3, answer 3
     print("divide 10 / 3, answer 3")
     print(divide(10, num2: 3))
+    
+    // test generic functions
+    
+    // add 5 + 7, answer: 13
+    print("add 5 + 7, answer: 12")
+    print(mathOp(5, num2: 7, op: add))
+    
+    // subtract 1 - (-6), answer 7
+    print("subtract 1 - (-6), answer 7")
+    print(mathOp(1, num2: -6, op: subtract))
+    
+    // multiply 10 * (-8), answer -80
+    print("multiply 10 * (-8), answer -80")
+    print(mathOp(10, num2: -8, op: multiply))
+    
+    // divide 5 / 1, answer 5
+    print("divide 5 / 1, answer 5")
+    print(mathOp(5, num2: 1, op: divide))
 
 }
 
@@ -94,8 +112,8 @@ testBasicCalc()
 func arrayAdd(numArray: [Int]) -> Int {
     var result = 0
     
-    for index in 0...numArray.count {
-        result += numArray[index]
+    for element in numArray {
+        result += element
     }
     
     return result
@@ -104,12 +122,15 @@ func arrayAdd(numArray: [Int]) -> Int {
 // takes an array of Ints as a parameter, returns product of all Ints in array
 
 func arrayMultiply(numArray: [Int]) -> Int {
-    var result = 0
-    
-    for index in 0...numArray.count {
-        result *= numArray[index]
+    if numArray.count > 0 {
+        var result = numArray[0]
+        
+        for var i = 1; i < numArray.count; i++ {
+            result *= numArray[i]
+        }
+        return result
     }
-    return result
+    return 0
 }
 
 // takes an array of Ints as a parameter, returns count of all Ints in array
@@ -121,10 +142,12 @@ func count(numArray: [Int]) -> Int {
 // takes an array of Ints as a parameter, returns aerage of all elements in array
 
 func average(numArray: [Int]) -> Int {
-    let arraySum = add(numArray)
     let arrayCount = count(numArray)
-    
-    return arraySum / arrayCount
+    if !(arrayCount == 0) {
+        let arraySum = arrayAdd(numArray)
+        return arraySum / arrayCount
+    }
+    return 0
 }
 
 
@@ -166,11 +189,11 @@ func testArrayCalc() {
     // test count function
     
     // count array with numbers, answer 6
-    print("count numbers in [1, 2, 3, 4, 5, 6]")
+    print("count numbers in [1, 2, 3, 4, 5, 6], answer 6")
     print(count([1, 2, 3, 4, 5, 6]))
     
-    // count empty array
-    print("count numbers in []")
+    // count empty array, answer 0
+    print("count numbers in [], answer 0")
     print(count([]))
     
     // test average function
@@ -185,21 +208,21 @@ func testArrayCalc() {
     
     // test generic function
     
-    // add 5 + -1 + 10, answer: 14
-    print("add 5 + -1 + 10, answer: 14")
-    print(arrayMathOp([5, -1, 10], op: arrayAdd()))
+    // generic add 5 + -1 + 10, answer: 14
+    print("generic add 5 + -1 + 10, answer: 14")
+    print(arrayMathOp([5, -1, 10], op: arrayAdd))
     
-    // multiply 10 * (-8) * 2, answer -160
-    print("multiply 10 * (-8) * 2, answer -160")
-    print(arrayMathOp([10, -8, 2], op: arrayMultiply()))
+    // generic multiply 10 * (-8) * 2, answer -160
+    print("generic multiply 10 * (-8) * 2, answer -160")
+    print(arrayMathOp([10, -8, 2], op: arrayMultiply))
     
-    // count array with numbers, answer 6
-    print("count numbers in [1, 2, 3, 4, 5, 6]")
-    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: count()))
+    // generic count array with numbers, answer 6
+    print("generic count numbers in [1, 2, 3, 4, 5, 6], answer 6")
+    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: count))
     
-    // take average of these numbers [1, 2, 3, 4, 5, 6], answer 6
-    print("take average of these numbers [1, 2, 3, 4, 5, 6], answer 6")
-    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: average()))
+    // generic take average of these numbers [1, 2, 3, 4, 5, 6], answer 6
+    print("generic take average of these numbers [1, 2, 3, 4, 5, 6], answer 3")
+    print(arrayMathOp([1, 2, 3, 4, 5, 6], op: average))
 }
 
 testArrayCalc()
@@ -208,16 +231,42 @@ testArrayCalc()
 
 typealias point = (Int, Int)
 
-func addPoints(point1: point, point2: point) -> point{
+func tupleAddPoints(point1: point, point2: point) -> point{
     return (point1.0 + point2.0, point1.1 + point2.1)
 }
 
-func subtractPoints(point1: point, point2: point) -> point {
+func tupleSubtractPoints(point1: point, point2: point) -> point {
     return(point1.0 - point2.0, point1.1 - point2.1)
 }
 
 func testTuplePoints() {
-    print("Testing tuple points")
+    // test adding points
+    
+    // add (0, 0) and (0, 0), answer (0, 0)
+    print("add (0, 0) and (0, 0), answer (0, 0)")
+    print(tupleAddPoints((0, 0), point2: (0,0)))
+    
+    // add (1, 7) and (2, 9), answer (3, 16)
+    print("add (1, 7) and (2, 9), answer (3, 16)")
+    print(tupleAddPoints((1, 7), point2: (2, 9)))
+    
+    // add (-10, 4) and (2, -9), answer (-8, -5)
+    print("add (-10, 4) and (2, -9), answer (-8, -5)")
+    print(tupleAddPoints((-10, 4), point2: (2, -9)))
+    
+    // test subtracting points
+    
+    // subtract (0, 0) and (0, 0), answer (0, 0)
+    print("subract (0, 0) and (0, 0), answer (0, 0)")
+    print(tupleSubtractPoints((0, 0), point2: (0,0)))
+    
+    // subtract (1, 7) and (2, 9), answer (-1, -2)
+    print("subtract (1, 7) and (2, 9), answer (-1, -2)")
+    print(tupleSubtractPoints((1, 7), point2: (2, 9)))
+    
+    // subtract (-10, 4) and (2, -9), answer (-12, 13)
+    print("subtract (-10, 4) and (2, -9), answer (-12, 13)")
+    print(tupleSubtractPoints((-10, 4), point2: (2, -9)))
 }
 
 testTuplePoints()
@@ -229,8 +278,8 @@ func addPoints(point1: Dictionary<String, Int>, point2: Dictionary<String, Int>)
         print("Please enter valid input.")
         return nil
     }
-    let newX = Int(point1["x"]! + point2["x"]!)
-    let newY = Int(point1["y"]! + point2["y"]!)
+    let newX = point1["x"]! + point2["x"]!
+    let newY = point1["y"]! + point2["y"]!
     return ["x" : newX, "y" : newY]
 }
 
@@ -239,8 +288,8 @@ func subtractPoints(point1: Dictionary<String, Int>, point2: Dictionary<String, 
         print("Please enter valid input.")
         return nil
     }
-    let newX = Int(point1["x"]! - point2["x"]!)
-    let newY = Int(point1["y"]! - point2["y"]!)
+    let newX = point1["x"]! - point2["x"]!
+    let newY = point1["y"]! - point2["y"]!
     return ["x" : newX, "y" : newY]
 }
 
@@ -249,7 +298,44 @@ func isNil(point: Dictionary<String, Int>) -> Bool {
 }
 
 func testDictionaryPoints() {
+    print("Testing dictionary points")
+    // test adding points
     
+    // add (0, 0) and (0, 0), answer (0, 0)
+    print("add (0, 0) and (0, 0), answer (0, 0)")
+    print(addPoints(["x" : 0, "y" : 0], point2: ["x" : 0, "y" : 0])!)
+    
+    // add (1, 7) and (2, 9), answer (3, 16)
+    print("add (1, 7) and (2, 9), answer (3, 16)")
+    print(addPoints(["x" : 1, "y" : 7], point2: ["x" : 2, "y" : 9])!)
+    
+    // add (-10, 4) and (2, -9), answer (-8, -5)
+    print("add (-10, 4) and (2, -9), answer (-8, -5)")
+    print(addPoints(["x" : -10, "y" : 4], point2: ["x" : 2, "y" : -9])!)
+    
+    // test subtracting points
+    
+    // subtract (0, 0) and (0, 0), answer (0, 0)
+    print("subract (0, 0) and (0, 0), answer (0, 0)")
+    print(subtractPoints(["x" : 0, "y" : 0], point2: ["x" : 0, "y" : 0])!)
+    
+    // subtract (1, 7) and (2, 9), answer (-1, -2)
+    print("subtract (1, 7) and (2, 9), answer (-1, -2)")
+    print(subtractPoints(["x" : 1, "y" : 7], point2: ["x" : 2, "y" : 9])!)
+    
+    // subtract (-10, 4) and (2, -9), answer (-12, 13)
+    print("subtract (-10, 4) and (2, -9), answer (-12, 13)")
+    print(subtractPoints(["x" : -10, "y" : 4], point2: ["x" : 2, "y" : -9])!)
+    
+    // try to add points without an "X" coordinate
+    // add (7) and (2, 9), answer nil
+    print("add (7) and (2, 9), nil")
+    print(addPoints(["y" : 7], point2: ["x" : 2, "y" : 9]))
+    
+    // try to subtract points without an "Y" coordinate
+    // add (1, 7) and (2, 9), answer nil
+    print("add (7) and (2, 9), nil")
+    print(addPoints(["x" : 1], point2: ["x" : 2, "y" : 9]))
 }
 
 testDictionaryPoints()
